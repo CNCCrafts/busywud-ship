@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "workspace",
   "version": "1.0.0",
   "description": "",
@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.3.1",
+    "@tabler/icons-webfont": "^3.48.0",
     "express-session": "^1.19.0",
     "google-auth-library": "^11.1.0",
     "razorpay": "^2.9.8"
