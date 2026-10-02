@@ -1,21 +1,354 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="https://res.cloudinary.com/epwhlldb/image/upload/v1788360899/busywud_logo.avif" type="image/svg+xml" />
-    <link rel="icon" href="https://res.cloudinary.com/epwhlldb/image/upload/v1788360899/busywud_logo.avif" sizes="any" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Busywud — GlowLogic Montessori Sensory Board</title>
-    <meta name="description" content="Busywud — premium Montessori busy board crafted from 100% natural birch plywood with real LED circuits and tactile switches." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./tabler-icons.min.css" />
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script type="module" crossorigin src="./assets/index-DDrEZ4hd.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-3_tL4RHj.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Busywud Admin</title>
+  <link rel="icon" href="https://res.cloudinary.com/epwhlldb/image/upload/v1788360899/busywud_logo.avif" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0b0b0b;
+      color: #f5f3ee;
+    }
+    .admin-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid #2a2a2a;
+      background: #0f0f0f;
+    }
+    .admin-header__brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: #e3c97f;
+    }
+    .admin-header__actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      border: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .btn--ghost {
+      background: #141414;
+      color: #e3c97f;
+      border: 1px solid #2a2a2a;
+    }
+    .btn--primary {
+      background: #c9a84c;
+      color: #0b0b0b;
+    }
+    .admin-body {
+      flex: 1;
+      padding: 24px;
+    }
+    .card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      color: #e3c97f;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-row--full {
+      grid-template-columns: 1fr;
+    }
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #b5af9f;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #2a2a2a;
+      background: #0f0f0f;
+      color: #f5f3ee;
+      font-size: 14px;
+    }
+    textarea { resize: vertical; }
+    .status {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    .status--error { color: #f87171; }
+    .status--success { color: #86efac; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    th {
+      color: #b5af9f;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    td { color: #f5f3ee; }
+    .empty {
+      color: #8a8578;
+      font-size: 13px;
+      padding: 10px 2px;
+    }
+    .login-card {
+      max-width: 380px;
+      margin: 80px auto;
+      text-align: center;
+    }
+    .login-card h1 {
+      font-size: 22px;
+      color: #e3c97f;
+      margin: 0 0 8px;
+    }
+    .login-card p {
+      color: #b5af9f;
+      font-size: 13px;
+      margin: 0 0 18px;
+    }
+    .login-card input {
+      margin-bottom: 10px;
+    }
+    .login-card .btn {
+      width: 100%;
+      padding: 12px;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <header class="admin-header" id="admin-header">
+      <div class="admin-header__brand">Busywud Admin</div>
+      <div class="admin-header__actions">
+        <a class="btn btn--ghost" href="/">Back to Store</a>
+        <button class="btn btn--ghost" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <main class="admin-body">
+      <div id="login-view" class="card login-card">
+        <h1>Admin Login</h1>
+        <p>Sign in to manage products and orders.</p>
+        <form id="login-form">
+          <div class="form-row form-row--full">
+            <div><label>Email</label><input id="login-email" type="email" required /></div>
+          </div>
+          <div class="form-row form-row--full">
+            <div><label>Password</label><input id="login-password" type="password" required /></div>
+          </div>
+          <div class="form-row form-row--full">
+            <button class="btn btn--primary" type="submit">Sign In</button>
+          </div>
+        </form>
+        <div id="login-status" class="status"></div>
+      </div>
+
+      <div id="admin-view" class="hidden">
+        <div class="card">
+          <h2>Single Product</h2>
+          <div id="product-form"></div>
+          <div id="product-status" class="status"></div>
+        </div>
+        <div class="card">
+          <h2>Orders</h2>
+          <div id="orders-area">
+            <p class="empty">Loading...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const API = '/api';
+    const token = localStorage.getItem('cnc_admin_token');
+    const headers = { 'Content-Type': 'application/json' };
+
+    function authHeaders() {
+      const t = localStorage.getItem('cnc_admin_token');
+      return t ? { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t } : { 'Content-Type': 'application/json' };
+    }
+
+    async function loadProduct() {
+      const res = await fetch(`${API}/product`, { headers: authHeaders() });
+      if (res.ok) return await res.json();
+      const all = await fetch(`${API}/products`, { headers: authHeaders() }).then(r => r.json());
+      return all[0] || null;
+    }
+
+    async function saveProduct(e) {
+      e.preventDefault();
+      const status = document.getElementById('product-status');
+      status.className = 'status';
+      status.textContent = 'Saving...';
+      const body = {
+        title: document.getElementById('p-title').value,
+        badge: document.getElementById('p-badge').value,
+        price: Number(document.getElementById('p-price').value),
+        oldPrice: Number(document.getElementById('p-old').value),
+        image: document.getElementById('p-image').value,
+        description: document.getElementById('p-desc').value
+      };
+      const res = await fetch(`${API}/product`, { method: 'PUT', headers: authHeaders(), body: JSON.stringify(body) });
+      if (res.ok) {
+        status.className = 'status status--success';
+        status.textContent = 'Saved successfully.';
+      } else {
+        status.className = 'status status--error';
+        status.textContent = 'Save failed.';
+      }
+    }
+
+    function renderProductForm(p) {
+      const el = document.getElementById('product-form');
+      el.innerHTML = `
+        <form onsubmit="saveProduct(event)">
+          <div class="form-row">
+            <div><label>Title</label><input id="p-title" value="${(p.title || '').replace(/"/g, '&quot;')}" /></div>
+            <div><label>Badge</label><input id="p-badge" value="${(p.badge || '').replace(/"/g, '&quot;')}" /></div>
+          </div>
+          <div class="form-row">
+            <div><label>Price (INR)</label><input id="p-price" type="number" value="${p.price || 0}" /></div>
+            <div><label>Old Price (INR)</label><input id="p-old" type="number" value="${p.oldPrice || 0}" /></div>
+          </div>
+          <div class="form-row form-row--full">
+            <div><label>Image URL</label><input id="p-image" value="${(p.image || '').replace(/"/g, '&quot;')}" /></div>
+          </div>
+          <div class="form-row form-row--full">
+            <div><label>Description</label><textarea id="p-desc" rows="3">${(p.description || '').replace(/</g, '&lt;')}</textarea></div>
+          </div>
+          <div class="form-row form-row--full">
+            <button class="btn btn--primary" type="submit">Save Product</button>
+          </div>
+        </form>
+      `;
+    }
+
+    async function loadOrders() {
+      const el = document.getElementById('orders-area');
+      try {
+        const res = await fetch(`${API}/orders`, { headers: authHeaders() });
+        if (!res.ok) throw new Error('Failed');
+        const orders = await res.json();
+        if (!orders.length) {
+          el.innerHTML = '<p class="empty">No orders yet.</p>';
+          return;
+        }
+        el.innerHTML = `
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Customer</th><th>Total</th><th>Status</th><th>Payment</th></tr>
+            </thead>
+            <tbody>
+              ${orders.map(o => `
+                <tr>
+                  <td>${o.orderId || o._id}</td>
+                  <td>${o.customer?.name || 'Guest'}<br/><span style="color:#8a8578;font-size:11px">${o.customer?.email || ''}</span></td>
+                  <td>₹${Number(o.amount || o.total || 0).toLocaleString('en-IN')}</td>
+                  <td>${o.status}</td>
+                  <td>${o.payment_id || '-'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } catch (e) {
+        el.innerHTML = '<p class="empty">Could not load orders.</p>';
+      }
+    }
+
+    async function login(e) {
+      e.preventDefault();
+      const status = document.getElementById('login-status');
+      status.className = 'status';
+      status.textContent = 'Signing in...';
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      try {
+        const res = await fetch(`${API}/auth/admin-login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || data.message || 'Invalid credentials');
+        localStorage.setItem('cnc_admin_token', data.token);
+        location.reload();
+      } catch (err) {
+        status.className = 'status status--error';
+        status.textContent = err.message;
+      }
+    }
+
+    async function logout() {
+      await fetch(`${API}/admin/logout`, { method: 'POST', headers: authHeaders() });
+      localStorage.removeItem('cnc_admin_token');
+      location.reload();
+    }
+
+    async function checkAuth() {
+      const res = await fetch(`${API}/admin/check`);
+      const data = await res.json();
+      return !!data.loggedIn;
+    }
+
+    async function init() {
+      const loggedIn = token ? true : await checkAuth();
+      const loginView = document.getElementById('login-view');
+      const adminView = document.getElementById('admin-view');
+      const adminHeader = document.getElementById('admin-header');
+
+      if (loggedIn) {
+        loginView.classList.add('hidden');
+        adminView.classList.remove('hidden');
+        adminHeader.classList.remove('hidden');
+        const product = await loadProduct();
+        if (product) renderProductForm(product);
+        await loadOrders();
+      } else {
+        loginView.classList.remove('hidden');
+        adminView.classList.add('hidden');
+        adminHeader.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('login-form').addEventListener('submit', login);
+    init();
+  </script>
+</body>
 </html>
