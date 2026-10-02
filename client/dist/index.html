@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Busywud — GlowLogic Montessori Sensory Board</title>
+  <meta name="description" content="Premium Montessori busy board crafted from 100% natural birch plywood with real LED circuits and tactile switches." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    :root {
+      --ink: #0F1B2D;
+      --accent: #C7451F;
+      --accent-soft: #F9EAE1;
+      --cream: #FBF7F0;
+      --cream-alt: #F3EDE0;
+      --surface: #FFFFFF;
+      --muted: #6B7280;
+      --line: #EDE6D8;
+      --success: #166534;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --section: 96px;
+      --container: 1240px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 640px) { .container { padding: 0 16px; } }
+
+    .site-nav {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(251,247,240,0.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-nav__inner {
+      max-width: var(--container); margin: 0 auto; padding: 0 24px;
+      height: 76px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .site-nav__left, .site-nav__right { display: flex; align-items: center; gap: 18px; }
+    .site-nav__logo {
+      font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: -0.03em;
+      color: var(--ink); text-decoration: none;
+    }
+    .site-nav__logo img { height: 38px; width: auto; display: block; }
+    .site-nav__links { display: flex; gap: 22px; }
+    .site-nav__links a {
+      font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none;
+      padding: 6px 2px; border-bottom: 2px solid transparent; transition: all 0.2s;
+    }
+    .site-nav__links a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+    .site-nav__icon-btn {
+      position: relative; width: 42px; height: 42px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--surface); cursor: pointer;
+      display: grid; place-items: center; color: var(--ink); transition: all 0.2s;
+    }
+    .site-nav__icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .site-nav__badge {
+      position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 999px;
+      background: var(--accent); color: #fff; font-size: 10px; font-weight: 700;
+      display: grid; place-items: center;
+    }
+    .site-nav__login-btn {
+      font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 999px;
+      background: var(--ink); color: #fff; border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .site-nav__login-btn:hover { background: var(--accent); }
+    .site-nav__user { display: flex; align-items: center; gap: 10px; }
+    .site-nav__user span { font-size: 13px; font-weight: 600; }
+    .site-nav__user button {
+      font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--surface); cursor: pointer;
+    }
+
+    .hero { padding: var(--section) 0; background: var(--cream); }
+    .hero__inner {
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 72px; align-items: center;
+    }
+    .hero__content { display: flex; flex-direction: column; gap: 22px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .hero__title {
+      font-family: var(--font-display); font-weight: 700; line-height: 1.05;
+      font-size: clamp(2.6rem, 4.2vw, 4.4rem); letter-spacing: -0.03em;
+    }
+    .hero__title em { font-style: italic; color: var(--accent); }
+    .hero__title-underline { position: relative; display: inline-block; }
+    .hero__title-underline::after {
+      content: ''; position: absolute; left: 0; bottom: 6px; width: 100%; height: 10px;
+      background: var(--accent-soft); z-index: -1;
+    }
+    .hero__lead { font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 520px; }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px;
+      background: var(--ink); color: #fff; font-weight: 600; font-size: 14px; border: none; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px;
+      background: transparent; color: var(--ink); font-weight: 600; font-size: 14px;
+      border: 1px solid var(--line); cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .btn-ghost:hover { border-color: var(--ink); background: var(--surface); }
+    .hero__stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      border-top: 1px solid var(--line); padding-top: 22px; margin-top: 8px;
+    }
+    .hero__stats dt { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; }
+    .hero__stats dd { font-family: var(--font-display); font-weight: 700; font-size: 26px; margin-top: 4px; }
+    .hero__gallery { display: flex; justify-content: center; }
+    .hero__frame {
+      position: relative; background: var(--surface); border-radius: 24px; padding: 18px;
+      box-shadow: 0 30px 60px -20px rgba(15,27,45,0.18); transform: rotate(-1deg);
+      border: 1px solid var(--line);
+    }
+    .hero__frame img { display: block; width: 100%; max-width: 520px; border-radius: 16px; }
+    .hero__frame-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.16em; background: var(--accent-soft); color: var(--accent);
+      padding: 6px 10px; border-radius: 999px; margin-bottom: 10px;
+    }
+    .hero__frame strong { display: block; font-size: 14px; font-weight: 700; margin-top: 8px; }
+    .hero__frame em { font-style: italic; color: var(--muted); font-size: 12px; }
+
+    .trust-bar { background: var(--ink); color: #fff; padding: 28px 0; }
+    .trust-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .trust-bar__item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding-right: 18px; border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .trust-bar__item:last-child { border-right: none; padding-right: 0; }
+    .trust-bar__icon {
+      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(199,69,31,0.18); border: 1px solid rgba(255,255,255,0.12); color: #fff;
+    }
+    .trust-bar__title { font-size: 13px; font-weight: 700; }
+    .trust-bar__desc { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+    .section { padding: var(--section) 0; }
+    .section--alt { background: var(--surface); }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 40px; }
+    .section-head__title {
+      font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.2vw, 3rem);
+      line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .section-head__title em { font-style: italic; color: var(--accent); }
+    .section-head__lede { max-width: 520px; color: var(--muted); font-size: 14px; line-height: 1.7; margin-top: 8px; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .product-grid { grid-template-columns: 1fr; } }
+    .product-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+      padding: 20px; display: flex; flex-direction: column; gap: 14px;
+      transition: all 0.35s ease;
+    }
+    .product-card:hover { transform: translateY(-6px); border-color: var(--ink); box-shadow: 0 30px 50px -20px rgba(15,27,45,0.12); }
+    .product-card__icon {
+      width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .product-card__title { font-weight: 700; font-size: 15px; line-height: 1.35; }
+    .product-card__desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    .compare-wrap {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
+    }
+    .compare-wrap table { width: 100%; border-collapse: collapse; }
+    .compare-wrap th, .compare-wrap td { padding: 16px 20px; font-size: 13px; text-align: left; border-bottom: 1px solid var(--line); }
+    .compare-wrap th { font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
+    .compare-wrap td { font-weight: 500; }
+    .compare-wrap tr:last-child td, .compare-wrap tr:last-child th { border-bottom: none; }
+    .compare-wrap .col-highlight { color: var(--success); font-weight: 700; }
+    .compare-wrap .col-muted { color: var(--muted); }
+
+    .product-section__inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    @media (max-width: 860px) { .product-section__inner { grid-template-columns: 1fr; } }
+    .product-section__media { display: flex; justify-content: center; }
+    .product-section__media img {
+      max-width: 100%; border-radius: 24px; box-shadow: 0 30px 60px -20px rgba(15,27,45,0.18);
+      border: 1px solid var(--line);
+    }
+    .product-section__pricing { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .product-section__price { font-family: var(--font-display); font-weight: 700; font-size: 38px; }
+    .product-section__old { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+    .product-section__badge {
+      font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .assurance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .assurance-grid div {
+      background: var(--cream-alt); border: 1px solid var(--line); border-radius: 16px;
+      padding: 14px; text-align: center;
+    }
+    .assurance-grid strong { display: block; font-size: 12px; font-weight: 700; }
+    .assurance-grid span { font-size: 11px; color: var(--muted); }
+
+    .cta-block { padding: var(--section) 0; }
+    .cta-card {
+      position: relative; overflow: hidden; border-radius: 24px;
+      background: var(--ink); color: #fff; padding: 60px 40px;
+    }
+    .cta-card__pattern {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image: radial-gradient(var(--accent) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .cta-card__inner { position: relative; max-width: 680px; margin: 0 auto; text-align: center; }
+    .cta-card h2 {
+      font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.2vw, 3rem);
+      line-height: 1.1; letter-spacing: -0.03em; margin: 14px 0 10px;
+    }
+    .cta-card h2 em { font-style: italic; color: var(--accent); }
+    .cta-card p { color: rgba(255,255,255,0.78); font-size: 14px; line-height: 1.7; }
+    .cta-card .btn-primary { margin-top: 22px; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-info h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 2.8vw, 2.6rem); margin-top: 8px; }
+    .contact-info__list { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .contact-info__item {
+      display: flex; align-items: center; gap: 14px; padding: 16px; background: var(--surface);
+      border: 1px solid var(--line); border-radius: 18px;
+    }
+    .contact-info__icon {
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .contact-info__item strong { display: block; font-size: 13px; }
+    .contact-info__item span { font-size: 12px; color: var(--muted); }
+    .contact-form {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px;
+    }
+    .contact-form h3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0 0 16px; }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line);
+      background: var(--cream); font-family: var(--font-body); font-size: 13px; margin-bottom: 12px;
+    }
+    .contact-form button {
+      width: 100%; padding: 13px; border-radius: 999px; background: var(--ink); color: #fff;
+      font-weight: 600; border: none; cursor: pointer;
+    }
+
+    .site-footer { background: var(--ink); color: #fff; padding: 60px 0 28px; }
+    .site-footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 36px; margin-bottom: 40px; }
+    @media (max-width: 860px) { .site-footer__grid { grid-template-columns: 1fr 1fr; } }
+    .site-footer__brand { font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+    .site-footer__blurb { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-top: 10px; max-width: 280px; }
+    .site-footer__col h5 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 14px; color: rgba(255,255,255,0.9); }
+    .site-footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .site-footer__col a { font-size: 13px; color: rgba(255,255,255,0.7); text-decoration: none; }
+    .site-footer__col a:hover { color: #fff; }
+    .site-footer__newsletter-copy { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+    .site-footer__newsletter { display: flex; gap: 8px; }
+    .site-footer__newsletter input {
+      flex: 1; padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08); color: #fff; font-family: var(--font-body);
+    }
+    .site-footer__newsletter button {
+      padding: 10px 18px; border-radius: 999px; background: var(--accent); color: #fff;
+      font-weight: 600; border: none; cursor: pointer;
+    }
+    .site-footer__base {
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;
+      display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.6);
+    }
+
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 50; background: rgba(15,27,45,0.55);
+      backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--surface); border-radius: 28px; width: 100%; max-width: 400px;
+      padding: 32px; position: relative; box-shadow: 0 30px 60px -20px rgba(15,27,45,0.22);
+      border: 1px solid var(--line);
+    }
+    .modal__close {
+      position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 999px;
+      background: var(--cream); border: 1px solid var(--line); display: grid; place-items: center;
+      cursor: pointer; color: var(--muted);
+    }
+    .modal__title { font-family: var(--font-display); font-weight: 700; font-size: 28px; margin: 0 0 6px; }
+    .modal__sub { font-size: 13px; color: var(--muted); margin: 0 0 22px; }
+    .modal__input {
+      width: 100%; padding: 13px 14px; border-radius: 14px; border: 1px solid var(--line);
+      background: var(--cream); font-family: var(--font-body); font-size: 14px; margin-bottom: 12px;
+    }
+    .modal__btn {
+      width: 100%; padding: 13px; border-radius: 999px; background: var(--ink); color: #fff;
+      font-weight: 600; border: none; cursor: pointer;
+    }
+    .modal__divider {
+      display: flex; align-items: center; gap: 12px; margin: 18px 0;
+      font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em;
+    }
+    .modal__divider::before, .modal__divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .modal__google {
+      width: 100%; padding: 13px; border-radius: 14px; border: 1px solid var(--line);
+      background: var(--surface); cursor: pointer; font-weight: 600; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+
+    .cart-overlay {
+      position: fixed; inset: 0; z-index: 50; background: rgba(15,27,45,0.55);
+      backdrop-filter: blur(4px); display: none; justify-content: flex-end;
+    }
+    .cart-overlay.open { display: flex; }
+    .cart-drawer {
+      width: 100%; max-width: 420px; height: 100%; background: var(--surface);
+      border-left: 1px solid var(--line); display: flex; flex-direction: column;
+      box-shadow: -20px 0 60px rgba(15,27,45,0.12);
+    }
+    .cart-drawer__header {
+      padding: 22px 24px; border-bottom: 1px solid var(--line); display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .cart-drawer__title { font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+    .cart-drawer__body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+    .cart-drawer__footer {
+      padding: 22px 24px; border-top: 1px solid var(--line); background: var(--cream-alt);
+    }
+    .cart-drawer__total {
+      display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; margin-bottom: 14px;
+    }
+    .cart-drawer__btn {
+      width: 100%; padding: 14px; border-radius: 999px; background: var(--ink); color: #fff;
+      font-weight: 600; border: none; cursor: pointer; text-align: center;
+    }
+    .cart-item {
+      display: flex; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 18px;
+      background: var(--cream); margin-bottom: 12px;
+    }
+    .cart-item img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; border: 1px solid var(--line); }
+    .cart-item__title { font-weight: 700; font-size: 13px; }
+    .cart-item__price { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .cart-item__actions { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+    .cart-item__actions button {
+      width: 28px; height: 28px; border-radius: 10px; border: 1px solid var(--line);
+      background: var(--surface); cursor: pointer; font-weight: 700; display: grid; place-items: center;
+    }
+
+    .account-drawer {
+      position: fixed; inset: 0; z-index: 50; background: rgba(15,27,45,0.55);
+      backdrop-filter: blur(4px); display: none; justify-content: flex-end;
+    }
+    .account-drawer.open { display: flex; }
+    .account-drawer__panel {
+      width: 100%; max-width: 420px; height: 100%; background: var(--surface);
+      border-left: 1px solid var(--line); display: flex; flex-direction: column;
+      box-shadow: -20px 0 60px rgba(15,27,45,0.12);
+    }
+    .account-drawer__header {
+      padding: 22px 24px; border-bottom: 1px solid var(--line); display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .account-drawer__title { font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+    .account-drawer__body { flex: 1; overflow-y: auto; padding: 22px 24px; }
+
+    .admin-panel { display: none; padding: 40px 0; }
+    .admin-panel.open { display: block; }
+    .admin-panel__header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 28px;
+    }
+    .admin-panel__title { font-family: var(--font-display); font-weight: 700; font-size: 32px; }
+    .admin-panel__card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 24px;
+      padding: 28px; margin-bottom: 20px;
+    }
+    .admin-panel__card h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 0 0 18px; }
+    .admin-panel__list { display: flex; flex-direction: column; gap: 12px; }
+    .admin-panel__item {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      padding: 16px; background: var(--cream); border: 1px solid var(--line); border-radius: 18px;
+    }
+    .admin-panel__item img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; }
+    .admin-panel__item h4 { font-size: 14px; font-weight: 700; margin: 0; }
+    .admin-panel__item p { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
+    .admin-panel__actions { display: flex; gap: 8px; }
+    .admin-panel__actions button {
+      font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 12px; border: none; cursor: pointer;
+    }
+
+    @media (max-width: 860px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 36px; }
+      .product-section__inner { grid-template-columns: 1fr; }
+      .site-nav__links { display: none; }
+      .trust-bar__grid { grid-template-columns: repeat(2, 1fr); }
+      .site-footer__base { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <div class="site-nav__left">
+        <a class="site-nav__logo" href="/">
+          <img src="https://res.cloudinary.com/epwhlldb/image/upload/f_auto,q_auto/v1788360899/busywud_logo.avif" alt="Busywud" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none">Busywud</span>
+        </a>
+        <nav class="site-nav__links">
+          <a href="#home">Home</a>
+          <a href="#product">Product</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="site-nav__right">
+        <button id="cartBtn" class="site-nav__icon-btn hidden" onclick="toggleCartDrawer(true)">
+          <i class="fa-solid fa-basket-shopping text-base"></i>
+          <span id="cartCountBadge" class="site-nav__badge">0</span>
+        </button>
+        <button id="myAccountBtn" class="site-nav__icon-btn hidden" onclick="toggleMyAccount(true)">
+          <i class="fa-regular fa-user text-base"></i>
+        </button>
+        <div id="authSlot">
+          <button class="site-nav__login-btn" onclick="openAuthModal('signin')">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="storeView" class="flex-grow">
+    <section id="homeSection" class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="eyebrow">Montessori Sensory Innovation</span>
+          <h1 class="hero__title">
+            Crafted for curious<br />
+            <em>little hands</em> and<br />
+            <span class="hero__title-underline">big discoveries</span>.
+          </h1>
+          <p class="hero__lead">
+            GlowLogic is a premium Montessori busy board — 100% natural birch plywood
+            with real LED circuits, tactile switches, and a safety key lock designed
+            to build fine motor skills and independent logic.
+          </p>
+          <div class="hero__actions">
+            <a href="#product" class="btn-primary">Shop GlowLogic →</a>
+            <a href="#features" class="btn-ghost">Why It Works</a>
+          </div>
+          <dl class="hero__stats">
+            <div>
+              <dt>Happy Families</dt>
+              <dd>3,500<span>+</span></dd>
+            </div>
+            <div>
+              <dt>Materials</dt>
+              <dd>100%<span> Solid Wood</span></dd>
+            </div>
+            <div>
+              <dt>Parent Rating</dt>
+              <dd>4.9<span>/5</span></dd>
+            </div>
+          </dl>
+        </div>
+        <div class="hero__gallery">
+          <figure class="hero__frame">
+            <img id="storeProductImg" src="https://res.cloudinary.com/epwhlldb/image/upload/f_auto,q_auto/v1788360758/glowlogic_busy_board.webp" alt="GlowLogic Busy Board" />
+            <figcaption>
+              <span class="hero__frame-tag">Signature Product</span>
+              <strong id="storeProductTitle">GlowLogic Busy Board</strong>
+              <em>"My toddler is obsessed — finally screen-free learning."</em>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-bar">
+      <div class="container trust-bar__grid">
+        <div class="trust-bar__item">
+          <span class="trust-bar__icon"><i class="fa-solid fa-tree"></i></span>
+          <div><div class="trust-bar__title">100% Natural Hardwood</div><div class="trust-bar__desc">Non-toxic, hand-sanded birch ply</div></div>
+        </div>
+        <div class="trust-bar__item">
+          <span class="trust-bar__icon"><i class="fa-solid fa-bolt"></i></span>
+          <div><div class="trust-bar__title">Real LED Circuits</div><div class="trust-bar__desc">Tactile switches with gentle glow</div></div>
+        </div>
+        <div class="trust-bar__item">
+          <span class="trust-bar__icon"><i class="fa-solid fa-truck-fast"></i></span>
+          <div><div class="trust-bar__title">Free Express Shipping</div><div class="trust-bar__desc">All India delivery included</div></div>
+        </div>
+        <div class="trust-bar__item">
+          <span class="trust-bar__icon"><i class="fa-solid fa-star"></i></span>
+          <div><div class="trust-bar__title">4.9 / 5 Parent Rating</div><div class="trust-bar__desc">Loved by 3,500+ families</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Why GlowLogic</span>
+            <h2 class="section-head__title">Engineered for <em>early development</em>.</h2>
+            <p class="section-head__lede">Four tactile milestones, one beautifully crafted board.</p>
+          </div>
+        </div>
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-card__icon"><i class="fa-solid fa-key text-xl"></i></div>
+            <div class="product-card__title">Rotational Wrist Grip</div>
+            <div class="product-card__desc">The dedicated dual-key safety lock builds finger pinch dexterity needed for pencil gripping.</div>
+          </div>
+          <div class="product-card">
+            <div class="product-card__icon"><i class="fa-solid fa-lightbulb text-xl"></i></div>
+            <div class="product-card__title">Cause & Effect Circuits</div>
+            <div class="product-card__desc">Flipping toggle levers illuminates responsive LED diodes, teaching mechanical feedback.</div>
+          </div>
+          <div class="product-card">
+            <div class="product-card__icon"><i class="fa-solid fa-tree text-xl"></i></div>
+            <div class="product-card__title">100% Solid Hardwood</div>
+            <div class="product-card__desc">Hand-sanded birch ply with smooth rounded edges, odorless natural oils, zero plastic burrs.</div>
+          </div>
+          <div class="product-card">
+            <div class="product-card__icon"><i class="fa-solid fa-battery-full text-xl"></i></div>
+            <div class="product-card__title">Safe Battery Chamber</div>
+            <div class="product-card__desc">Dual screw-locked rear battery enclosure prevents accidental toddler access to cells.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">The Smart Switch</span>
+            <h2 class="section-head__title">Mobile Screens vs. Busywud GlowLogic</h2>
+          </div>
+        </div>
+        <div class="compare-wrap">
+          <table>
+            <thead>
+              <tr><th>Feature</th><th>Smartphones &amp; Tablets</th><th>Busywud GlowLogic</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Sensory Stimulation</td><td class="col-muted">Passive blue-light strain</td><td class="col-highlight">Tactile &amp; mechanical feedback</td></tr>
+              <tr><td>Fine Motor Exercise</td><td class="col-muted">Flat tap &amp; continuous swipe</td><td class="col-highlight">Turning keys, clicking levers &amp; toggles</td></tr>
+              <tr><td>Tantrum Trigger Risk</td><td class="col-muted">High dopamine crash upon removal</td><td class="col-highlight">Calm self-guided conclusion</td></tr>
+              <tr><td>Durability</td><td class="col-muted">Fragile glass prone to shatter</td><td class="col-highlight">Impact-resistant solid birch wood</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="productSection" class="section">
+      <div class="container product-section__inner">
+        <div class="product-section__media">
+          <img id="storeProductImg" src="https://res.cloudinary.com/epwhlldb/image/upload/f_auto,q_auto/v1788360758/glowlogic_busy_board.webp" alt="GlowLogic Busy Board" />
+        </div>
+        <div class="product-section__content">
+          <span class="eyebrow" id="storeProductBadge">Ages 1 to 4 Years</span>
+          <h2 id="storeProductTitle" class="hero__title" style="font-size: clamp(2rem, 4vw, 3rem);">GlowLogic Busy Board</h2>
+          <div class="product-section__pricing">
+            <span id="storeProductPrice" class="product-section__price">₹1,499</span>
+            <span id="storeProductOldPrice" class="product-section__old">₹2,499</span>
+            <span class="product-section__badge">Save 40%</span>
+          </div>
+          <p id="storeProductDesc" class="hero__lead" style="margin-top:10px">
+            Crafted from 100% natural, non-toxic wood with smooth rounded edges. Featuring real LED toggle switches, push buttons, and a safety key switch designed to boost fine motor skills, logic, and hand-eye coordination.
+          </p>
+          <div class="hero__actions" style="margin-top:22px">
+            <button onclick="handleAddToCartClick()" class="btn-primary">
+              <i class="fa-solid fa-basket-shopping"></i> Add to Bag
+            </button>
+            <button onclick="handleInstantBuy()" class="btn-ghost">
+              <i class="fa-solid fa-bolt"></i> Buy Now
+            </button>
+          </div>
+          <div class="assurance-grid">
+            <div>
+              <strong><i class="fa-solid fa-truck-fast"></i> Free Shipping</strong>
+              <span>All India delivery</span>
+            </div>
+            <div>
+              <strong><i class="fa-solid fa-rotate-left"></i> 7 Days Return</strong>
+              <span>Hassle-free returns</span>
+            </div>
+            <div>
+              <strong><i class="fa-solid fa-shield-halved"></i> 100% Non-Toxic</strong>
+              <span>Lab-tested hardwood</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-block">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-card__pattern"></div>
+          <div class="cta-card__inner">
+            <span class="eyebrow" style="color: rgba(255,255,255,0.78)">Questions?</span>
+            <h2>We're here to <em>help</em>.</h2>
+            <p>Our parenting support team replies within 4 business hours.</p>
+            <a href="#contact" class="btn-primary">Get in Touch →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contactSection" class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <span class="eyebrow">Help &amp; Orders</span>
+            <h2>Have questions?</h2>
+            <div class="contact-info__list">
+              <div class="contact-info__item">
+                <span class="contact-info__icon"><i class="fa-solid fa-envelope"></i></span>
+                <div><strong>Email Us</strong><span>support@busywud.com</span></div>
+              </div>
+              <div class="contact-info__item">
+                <span class="contact-info__icon"><i class="fa-solid fa-phone"></i></span>
+                <div><strong>Customer Helpline</strong><span>+91 77981 53537</span></div>
+              </div>
+              <div class="contact-info__item">
+                <span class="contact-info__icon"><i class="fa-solid fa-location-dot"></i></span>
+                <div><strong>Origin</strong><span>Crafted with care in India</span></div>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! Our team will reply within 4 business hours.');">
+            <h3>Send us a message</h3>
+            <input type="text" placeholder="Your name" required />
+            <input type="email" placeholder="Email address" required />
+            <textarea rows="4" placeholder="How can we help?" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <div class="site-footer__brand">Busywud</div>
+          <p class="site-footer__blurb">Little Hands, Big Discoveries — Premium Montessori sensory boards crafted in India.</p>
+        </div>
+        <div class="site-footer__col">
+          <h5>Shop</h5>
+          <ul>
+            <li><a href="#product">GlowLogic</a></li>
+            <li><a href="#features">Why It Works</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h5>Stay Connected</h5>
+          <p class="site-footer__newsletter-copy">Get parenting tips and early-access offers.</p>
+          <form class="site-footer__newsletter" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Email" required />
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="site-footer__base">
+        <div>© 2026 Busywud — Little Hands, Big Discoveries. All prices in INR.</div>
+        <div>Privacy · Terms · Refund Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="authModal" class="modal-overlay">
+    <div class="modal">
+      <button onclick="closeAuthModal()" class="modal__close"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="modalHeading" class="modal__title">Sign In</h3>
+      <p id="modalSubheading" class="modal__sub">Unlock your cart and quick checkout</p>
+
+      <button onclick="handleGoogleLogin()" class="modal__google" style="margin-bottom:14px">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Sign in with Google
+      </button>
+
+      <div class="modal__divider">Or Email</div>
+
+      <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3">
+        <div id="signupNameBox" class="hidden">
+          <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+          <input type="text" id="formName" class="modal__input" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+          <input type="email" id="formEmail" required class="modal__input" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Password</label>
+          <input type="password" id="formPass" required class="modal__input" />
+        </div>
+        <button type="submit" id="formSubmitBtn" class="modal__btn">Sign In</button>
+      </form>
+
+      <div class="text-center mt-5 text-xs text-gray-600 dark:text-gray-400">
+        <span id="toggleText">Don't have an account?</span>
+        <button onclick="toggleModalMode()" id="toggleBtn" class="text-brand-black dark:text-brand-yellow font-bold underline ml-1">Create Account</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cartDrawer" class="cart-overlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer__header">
+        <div class="cart-drawer__title">Your Bag</div>
+        <button onclick="toggleCartDrawer(false)" style="width:36px;height:36px;border-radius:999px;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="cartContents" class="cart-drawer__body"></div>
+      <div class="cart-drawer__footer">
+        <div class="cart-drawer__total">
+          <span>Total (INR)</span>
+          <span id="cartDrawerTotal">₹0</span>
+        </div>
+        <button onclick="triggerCheckout()" class="cart-drawer__btn">Checkout Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="myAccountDrawer" class="account-drawer">
+    <div class="account-drawer__panel">
+      <div class="account-drawer__header">
+        <div class="account-drawer__title">My Account</div>
+        <button onclick="toggleMyAccount(false)" style="width:36px;height:36px;border-radius:999px;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="account-drawer__body">
+        <div style="margin-bottom:22px">
+          <h4 style="font-size:14px;font-weight:700;margin:0 0 12px">Profile</h4>
+          <form id="accountForm" onsubmit="updateAccount(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Name</label>
+              <input type="text" id="accountName" class="modal__input" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Email</label>
+              <input type="email" id="accountEmail" readonly class="modal__input" style="color:var(--muted);background:var(--cream-alt)" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Phone</label>
+              <input type="tel" id="accountPhone" class="modal__input" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Address</label>
+              <textarea id="accountAddress" rows="3" class="modal__input"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Pincode</label>
+              <input type="text" id="accountPincode" class="modal__input" />
+            </div>
+            <button type="submit" class="modal__btn">Save Changes</button>
+          </form>
+        </div>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin:0 0 12px">My Orders</h4>
+          <div id="myOrdersList" class="space-y-3">
+            <p style="font-size:13px;color:var(--muted)">Loading orders...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="adminView" class="admin-panel">
+    <div class="container">
+      <div class="admin-panel__header">
+        <div>
+          <h1 class="admin-panel__title">Admin Management</h1>
+          <p style="font-size:13px;color:var(--muted);margin-top:4px">Manage products for your store</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button onclick="handleAdminLogout()" style="font-size:13px;font-weight:600;padding:10px 16px;border-radius:14px;border:1px solid #fecaca;color:#b91c1c;background:#fff;cursor:pointer">Logout</button>
+          <button onclick="navigateTo('store')" style="font-size:13px;font-weight:600;padding:10px 16px;border-radius:14px;background:var(--ink);color:#fff;border:none;cursor:pointer">Back to Store</button>
+        </div>
+      </div>
+
+      <div class="admin-panel__card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <h3>Products</h3>
+          <button onclick="showAddProductForm()" style="font-size:13px;font-weight:600;padding:10px 16px;border-radius:14px;background:var(--accent);color:#fff;border:none;cursor:pointer">
+            <i class="fa-solid fa-plus" style="margin-right:6px"></i>Add Product
+          </button>
+        </div>
+        <div id="productList" class="admin-panel__list"></div>
+      </div>
+
+      <div id="addProductPanel" class="admin-panel__card" style="display:none">
+        <h3>Add New Product</h3>
+        <form id="addProductForm" onsubmit="addProduct(event)" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Title</label><input type="text" id="addTitle" required class="modal__input" /></div>
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Badge</label><input type="text" id="addBadge" required class="modal__input" /></div>
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Price (₹)</label><input type="number" id="addPrice" required min="1" class="modal__input" /></div>
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Old Price (₹)</label><input type="number" id="addOldPrice" required min="1" class="modal__input" /></div>
+          <div style="grid-column:1/-1"><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Image URL</label><input type="text" id="addImg" required class="modal__input" /></div>
+          <div style="grid-column:1/-1"><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Description</label><textarea id="addDesc" rows="3" required class="modal__input"></textarea></div>
+          <div style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:10px">
+            <button type="button" onclick="hideAddProductForm()" style="padding:10px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600">Cancel</button>
+            <button type="submit" style="padding:10px 16px;border-radius:14px;background:var(--ink);color:#fff;border:none;cursor:pointer;font-weight:600">Add Product</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="editProductPanel" class="admin-panel__card" style="display:none">
+        <h3>Edit Product</h3>
+        <form id="editProductForm" onsubmit="updateProduct(event)" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <input type="hidden" id="editId" />
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Title</label><input type="text" id="editTitle" required class="modal__input" /></div>
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Badge</label><input type="text" id="editBadge" required class="modal__input" /></div>
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Price (₹)</label><input type="number" id="editPrice" required min="1" class="modal__input" /></div>
+          <div><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Old Price (₹)</label><input type="number" id="editOldPrice" required min="1" class="modal__input" /></div>
+          <div style="grid-column:1/-1"><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Image URL</label><input type="text" id="editImg" required class="modal__input" /></div>
+          <div style="grid-column:1/-1"><label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Description</label><textarea id="editDesc" rows="3" required class="modal__input"></textarea></div>
+          <div style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:10px">
+            <button type="button" onclick="hideEditProductForm()" style="padding:10px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600">Cancel</button>
+            <button type="submit" style="padding:10px 16px;border-radius:14px;background:var(--ink);color:#fff;border:none;cursor:pointer;font-weight:600">Save Changes</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="orderManagementPanel" class="admin-panel__card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <h3>Orders & Shipments</h3>
+          <button onclick="loadAdminOrders()" style="font-size:13px;font-weight:600;padding:10px 16px;border-radius:14px;background:var(--accent);color:#fff;border:none;cursor:pointer">Refresh</button>
+        </div>
+        <div id="adminOrdersList" class="admin-panel__list"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const API_BASE = "/api";
+    const RAZORPAY_KEY = "rzp_live_TafLQCc6Jt5AsG";
+
+    let activeProduct = {
+      title: "GlowLogic Busy Board",
+      badge: "Ages 1 to 4 Years",
+      price: 1499,
+      oldPrice: 2499,
+      image: "https://res.cloudinary.com/epwhlldb/image/upload/f_auto,q_auto/v1788360758/glowlogic_busy_board.webp",
+      description: "Crafted from 100% natural, non-toxic wood with smooth rounded edges. Featuring real LED toggle switches, push buttons, and a safety key switch designed to boost fine motor skills, logic, and hand-eye coordination."
+    };
+
+    let currentUser = JSON.parse(localStorage.getItem('busywud_active_user')) || null;
+    let cartQuantity = parseInt(localStorage.getItem('busywud_cart_qty')) || 0;
+    let authMode = 'signin';
+
+    async function loadProductFromMongo() {
+      try {
+        const res = await fetch(`${API_BASE}/product`);
+        if (res.ok) {
+          activeProduct = await res.json();
+          renderStoreProduct();
+        }
+      } catch (err) {
+        console.warn("Could not reach backend, fallback to local storage:", err);
+        renderStoreProduct();
+      }
+    }
+
+    async function saveProductChanges(e) {
+      e.preventDefault();
+      const updated = {
+        title: document.getElementById('adminTitle').value,
+        badge: document.getElementById('adminBadge').value,
+        price: Number(document.getElementById('adminPrice').value),
+        oldPrice: Number(document.getElementById('adminOldPrice').value),
+        image: document.getElementById('adminImg').value,
+        description: document.getElementById('adminDesc').value
+      };
+      try {
+        const res = await fetch(`${API_BASE}/product`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updated)
+        });
+        if (res.ok) {
+          activeProduct = await res.json();
+          alert('Saved to MongoDB successfully!');
+          navigateTo('store');
+        }
+      } catch (err) {
+        alert('Failed saving to Mongo: ' + err.message);
+      }
+    }
+
+    async function loadAdminProducts() {
+      try {
+        const res = await fetch(`${API_BASE}/products`);
+        if (res.ok) {
+          const products = await res.json();
+          renderProductList(products);
+        }
+      } catch (err) {
+        console.error('Failed to load products:', err);
+      }
+    }
+
+    function renderProductList(products) {
+      const container = document.getElementById('productList');
+      if (!products.length) {
+        container.innerHTML = '<p class="text-xs text-gray-500 text-center py-6">No products found.</p>';
+        return;
+      }
+      container.innerHTML = products.map(p => `
+        <div class="admin-panel__item">
+          <div style="display:flex;align-items:center;gap:14px">
+            <img src="${p.image}" alt="">
+            <div>
+              <h4>${p.title}</h4>
+              <p>₹${Number(p.price).toLocaleString('en-IN')} • ${p.badge}</p>
+            </div>
+          </div>
+          <div class="admin-panel__actions">
+            <button onclick='editProduct(${JSON.stringify(p)})' style="background:var(--accent-soft);color:var(--accent)">Edit</button>
+            <button onclick="deleteProduct('${p._id}')" style="background:#fee2e2;color:#b91c1c">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function showAddProductForm() {
+      document.getElementById('addProductPanel').classList.remove('hidden');
+      document.getElementById('editProductPanel').classList.add('hidden');
+      document.getElementById('addProductForm').reset();
+    }
+    function hideAddProductForm() { document.getElementById('addProductPanel').classList.add('hidden'); }
+
+    async function addProduct(e) {
+      e.preventDefault();
+      const product = {
+        title: document.getElementById('addTitle').value,
+        badge: document.getElementById('addBadge').value,
+        price: Number(document.getElementById('addPrice').value),
+        oldPrice: Number(document.getElementById('addOldPrice').value),
+        image: document.getElementById('addImg').value,
+        description: document.getElementById('addDesc').value
+      };
+      try {
+        const res = await fetch(`${API_BASE}/products`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(product)
+        });
+        if (res.ok) {
+          alert('Product added successfully!');
+          hideAddProductForm();
+          loadAdminProducts();
+        }
+      } catch (err) {
+        alert('Failed adding product: ' + err.message);
+      }
+    }
+
+    function editProduct(product) {
+      document.getElementById('editId').value = product._id;
+      document.getElementById('editTitle').value = product.title;
+      document.getElementById('editBadge').value = product.badge;
+      document.getElementById('editPrice').value = product.price;
+      document.getElementById('editOldPrice').value = product.oldPrice;
+      document.getElementById('editImg').value = product.image;
+      document.getElementById('editDesc').value = product.description;
+      document.getElementById('editProductPanel').classList.remove('hidden');
+      document.getElementById('addProductPanel').classList.add('hidden');
+      document.getElementById('editProductPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+    function hideEditProductForm() { document.getElementById('editProductPanel').classList.add('hidden'); }
+
+    async function updateProduct(e) {
+      e.preventDefault();
+      const id = document.getElementById('editId').value;
+      const updated = {
+        title: document.getElementById('editTitle').value,
+        badge: document.getElementById('editBadge').value,
+        price: Number(document.getElementById('editPrice').value),
+        oldPrice: Number(document.getElementById('editOldPrice').value),
+        image: document.getElementById('editImg').value,
+        description: document.getElementById('editDesc').value
+      };
+      try {
+        const res = await fetch(`${API_BASE}/products/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updated)
+        });
+        if (res.ok) {
+          alert('Product updated successfully!');
+          hideEditProductForm();
+          loadAdminProducts();
+          loadProductFromMongo();
+        }
+      } catch (err) {
+        alert('Failed updating product: ' + err.message);
+      }
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm('Are you sure you want to delete this product?')) return;
+      try {
+        const res = await fetch(`${API_BASE}/products/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          alert('Product deleted successfully!');
+          loadAdminProducts();
+          loadProductFromMongo();
+        }
+      } catch (err) {
+        alert('Failed deleting product: ' + err.message);
+      }
+    }
+
+    async function handleAdminLogout() {
+      try {
+        await fetch(`${API_BASE}/admin/logout`, { method: 'POST' });
+        window.location.href = '/admin';
+      } catch (err) {
+        console.error('Logout failed:', err);
+      }
+    }
+
+    async function checkAdminAuth() {
+      try {
+        const res = await fetch(`${API_BASE}/admin/check`);
+        const data = await res.json();
+        return data.loggedIn;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    async function loadAdminOrders() {
+      try {
+        const res = await fetch(`${API_BASE}/orders`);
+        if (res.ok) {
+          const orders = await res.json();
+          renderAdminOrders(orders);
+        }
+      } catch (err) {
+        console.error('Failed to load orders:', err);
+      }
+    }
+
+    function renderAdminOrders(orders) {
+      const container = document.getElementById('adminOrdersList');
+      if (!orders.length) {
+        container.innerHTML = '<p class="text-xs text-gray-500 text-center py-6">No orders found.</p>';
+        return;
+      }
+      container.innerHTML = orders.map(o => `
+        <div class="admin-panel__item" style="flex-direction:column;align-items:stretch">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <p style="font-size:14px;font-weight:700">${o.orderId}</p>
+              <p style="font-size:12px;color:var(--muted)">${o.customer?.name || 'Guest'} • ${o.customer?.email || ''}</p>
+            </div>
+            <span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)">${o.status}</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+            <div>
+              <p style="font-size:13px;font-weight:600">₹${Number(o.amount).toLocaleString('en-IN')}</p>
+              ${o.shipment?.waybill ? `<p style="font-size:11px;color:var(--muted)">AWB: ${o.shipment.waybill} • ${o.shipment.status || 'PENDING'}</p>` : '<p style="font-size:11px;color:var(--muted)">No shipment</p>'}
+            </div>
+            <div style="display:flex;gap:8px">
+              <select onchange="updateOrderStatus('${o._id}', this.value)" style="font-size:12px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--surface)">
+                <option value="">Status</option>
+                <option value="CREATED">Created</option>
+                <option value="PAID">Paid</option>
+                <option value="CONFIRMED">Confirmed</option>
+                <option value="PROCESSING">Processing</option>
+                <option value="SHIPPED">Shipped</option>
+                <option value="DELIVERED">Delivered</option>
+                <option value="CANCELLED">Cancelled</option>
+              </select>
+              <button onclick="triggerParcelGuru('${o._id}')" style="font-size:11px;font-weight:700;padding:8px 12px;border-radius:12px;background:var(--ink);color:#fff;border:none;cursor:pointer">ParcelGuru</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function updateOrderStatus(orderId, status) {
+      if (!status) return;
+      try {
+        const res = await fetch(`${API_BASE}/orders/${orderId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        if (res.ok) loadAdminOrders();
+      } catch (err) {
+        alert('Failed updating order: ' + err.message);
+      }
+    }
+
+    async function triggerParcelGuru(orderId) {
+      try {
+        const res = await fetch(`${API_BASE}/orders/${orderId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ triggerShipment: true })
+        });
+        if (res.ok) {
+          alert('ParcelGuru shipment triggered!');
+          loadAdminOrders();
+        }
+      } catch (err) {
+        alert('Failed triggering ParcelGuru: ' + err.message);
+      }
+    }
+
+    async function triggerCheckout() {
+      if (cartQuantity <= 0) return;
+      if (!currentUser) { openAuthModal('signin'); return; }
+      const totalAmount = cartQuantity * activeProduct.price;
+      try {
+        const healthRes = await fetch(`${API_BASE}/health`);
+        if (!healthRes.ok) throw new Error('Server is not responding. Please try again later.');
+      } catch (healthErr) {
+        alert('Cannot reach server. Please check:\n1. Server is running\n2. Internet connection\n3. Site URL is correct');
+        return;
+      }
+      try {
+        const orderRes = await fetch(`${API_BASE}/create-order`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: totalAmount })
+        });
+        const responseText = await orderRes.text();
+        let orderData;
+        try { orderData = JSON.parse(responseText); }
+        catch (e) { throw new Error(`Server returned invalid response (${orderRes.status})`); }
+        if (!orderRes.ok) throw new Error(orderData.error || `Server error: ${orderRes.status}`);
+        if (!orderData.id) throw new Error(orderData.error || "Unable to initiate payment");
+        const options = {
+          key: RAZORPAY_KEY,
+          amount: orderData.amount,
+          currency: "INR",
+          name: "Busywud",
+          description: `${cartQuantity}x ${activeProduct.title}`,
+          image: "https://res.cloudinary.com/epwhlldb/image/upload/f_auto,q_auto/v1788360899/busywud_logo.avif",
+          order_id: orderData.id,
+          handler: async function (response) {
+            try {
+              const verifyRes = await fetch(`${API_BASE}/verify-payment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  amount: totalAmount,
+                  customer: currentUser,
+                  items: [{ title: activeProduct.title, price: activeProduct.price, qty: cartQuantity }]
+                })
+              });
+              if (verifyRes.ok) {
+                alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}. Order saved to database.`);
+                cartQuantity = 0;
+                localStorage.setItem('busywud_cart_qty', 0);
+                updateCartDisplay();
+                toggleCartDrawer(false);
+              } else {
+                const errData = await verifyRes.json().catch(() => ({}));
+                alert('Payment verification failed: ' + (errData.error || 'Unknown error'));
+              }
+            } catch (verifyErr) {
+              alert('Payment verification network error: ' + verifyErr.message);
+            }
+          },
+          prefill: { name: currentUser.name || "Customer", email: currentUser.email || "" },
+          theme: { color: "#FFC800" }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } catch (err) {
+        console.error('Payment error:', err);
+        alert("Payment Gateway Error: " + (err.message || 'Unknown error') + "\n\nPlease check:\n1. Server is running\n2. Internet connection\n3. Razorpay keys are configured");
+      }
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('busywud_theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        updateThemeIcon(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        updateThemeIcon(false);
+      }
+    }
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('busywud_theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark);
+    }
+    function updateThemeIcon(isDark) {
+      const icon = document.getElementById('themeIcon');
+      if (isDark) icon.className = 'fa-solid fa-sun text-base';
+      else icon.className = 'fa-solid fa-moon text-base';
+    }
+
+    function handleRouting() {
+      const isPathAdmin = window.location.pathname.endsWith('/admin');
+      const isHashAdmin = window.location.hash === '#/admin';
+      if (isPathAdmin || isHashAdmin) {
+        checkAdminAuth().then(isAdmin => {
+          if (isAdmin) {
+            document.getElementById('storeView').classList.add('hidden');
+            document.getElementById('adminView').classList.remove('hidden');
+            loadAdminProducts();
+            loadAdminOrders();
+          } else {
+            window.location.href = '/admin';
+          }
+        });
+      } else {
+        document.getElementById('adminView').classList.add('hidden');
+        document.getElementById('storeView').classList.remove('hidden');
+        renderStoreProduct();
+      }
+    }
+    function navigateTo(view) {
+      if (view === 'admin') window.location.hash = '#/admin';
+      else {
+        window.location.hash = '';
+        if (window.location.pathname.endsWith('/admin')) window.history.pushState({}, '', '/');
+      }
+      handleRouting();
+    }
+    window.addEventListener('hashchange', handleRouting);
+    window.addEventListener('popstate', handleRouting);
+
+    function renderStoreProduct() {
+      document.getElementById('storeProductTitle').innerText = activeProduct.title;
+      document.getElementById('storeProductBadge').innerText = activeProduct.badge;
+      document.getElementById('storeProductPrice').innerText = `₹${Number(activeProduct.price).toLocaleString('en-IN')}`;
+      document.getElementById('storeProductOldPrice').innerText = `₹${Number(activeProduct.oldPrice).toLocaleString('en-IN')}`;
+      document.getElementById('storeProductDesc').innerText = activeProduct.description;
+      document.getElementById('storeProductImg').src = activeProduct.image;
+    }
+
+    function openAuthModal(mode = 'signin') {
+      authMode = mode;
+      document.getElementById('authModal').classList.add('open');
+      updateModalLayout();
+    }
+    function closeAuthModal() { document.getElementById('authModal').classList.remove('open'); }
+    function toggleModalMode() {
+      authMode = (authMode === 'signin') ? 'signup' : 'signin';
+      updateModalLayout();
+    }
+    function updateModalLayout() {
+      const isSignup = authMode === 'signup';
+      document.getElementById('signupNameBox').classList.toggle('hidden', !isSignup);
+      document.getElementById('modalHeading').innerText = isSignup ? 'Create Account' : 'Sign In';
+      document.getElementById('modalSubheading').innerText = isSignup ? 'Join the Busywud family' : 'Unlock your cart and quick checkout';
+      document.getElementById('formSubmitBtn').innerText = isSignup ? 'Create Account' : 'Sign In';
+      document.getElementById('toggleText').innerText = isSignup ? 'Already have an account?' : "Don't have an account?";
+      document.getElementById('toggleBtn').innerText = isSignup ? 'Sign In' : 'Create Account';
+    }
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('formEmail').value;
+      const name = authMode === 'signup' ? document.getElementById('formName').value : email.split('@')[0];
+      loginUser({ name, email });
+    }
+    function handleGoogleLogin() {
+      const googleClientId = '556041111426-qdka5l6bavrqpvkahcd73k7vo22bsrrm.apps.googleusercontent.com';
+      const redirectUri = window.location.origin + '/';
+      const scope = 'profile email';
+      const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent(scope)}`;
+      window.location.href = url;
+    }
+    function handleOAuthCallback() {
+      const hash = window.location.hash;
+      if (hash.includes('access_token')) {
+        const token = new URLSearchParams(hash.substring(1)).get('access_token');
+        if (token) {
+          fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: `Bearer ${token}` } })
+            .then(res => res.json())
+            .then(data => { if (data.email) loginUser({ name: data.name || 'Google User', email: data.email }); })
+            .catch(() => loginUser({ name: 'Google Parent', email: 'parent@gmail.com' }));
+        }
+      }
+    }
+    function loginUser(userData) {
+      currentUser = userData;
+      localStorage.setItem('busywud_active_user', JSON.stringify(currentUser));
+      closeAuthModal();
+      refreshAuthState();
+    }
+    function handleLogout() {
+      currentUser = null;
+      localStorage.removeItem('busywud_active_user');
+      cartQuantity = 0;
+      localStorage.removeItem('busywud_cart_qty');
+      refreshAuthState();
+      toggleCartDrawer(false);
+      toggleMyAccount(false);
+    }
+    function toggleMyAccount(show) {
+      const drawer = document.getElementById('myAccountDrawer');
+      drawer.classList.toggle('open', show);
+      if (show) loadMyAccount();
+    }
+    async function loadMyAccount() {
+      if (!currentUser) return;
+      document.getElementById('accountName').value = currentUser.name || '';
+      document.getElementById('accountEmail').value = currentUser.email || '';
+      document.getElementById('accountPhone').value = currentUser.phone || '';
+      document.getElementById('accountAddress').value = currentUser.address || '';
+      document.getElementById('accountPincode').value = currentUser.pincode || '';
+      try {
+        const res = await fetch(`${API_BASE}/my-orders?email=${encodeURIComponent(currentUser.email)}`);
+        if (res.ok) {
+          const orders = await res.json();
+          renderMyOrders(orders);
+        }
+      } catch (err) {
+        console.error('Failed to load orders:', err);
+      }
+    }
+    function renderMyOrders(orders) {
+      const container = document.getElementById('myOrdersList');
+      if (!orders.length) {
+        container.innerHTML = '<p style="font-size:13px;color:var(--muted)">No orders yet.</p>';
+        return;
+      }
+      container.innerHTML = orders.map(o => `
+        <div style="border:1px solid var(--line);border-radius:18px;padding:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <p style="font-size:13px;font-weight:700">${o.orderId}</p>
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)">${o.status}</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted)">₹${Number(o.amount).toLocaleString('en-IN')} • ${o.items?.length || 0} items</p>
+          ${o.shipment?.waybill ? `<p style="font-size:11px;color:var(--muted);margin-top:4px">Tracking: ${o.shipment.waybill}</p>` : ''}
+        </div>
+      `).join('');
+    }
+    async function updateAccount(e) {
+      e.preventDefault();
+      const updated = {
+        email: currentUser.email,
+        name: document.getElementById('accountName').value,
+        phone: document.getElementById('accountPhone').value,
+        address: document.getElementById('accountAddress').value,
+        pincode: document.getElementById('accountPincode').value
+      };
+      try {
+        const res = await fetch(`${API_BASE}/my-account`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updated)
+        });
+        if (res.ok) {
+          const data = await res.json();
+          currentUser = { ...currentUser, ...data.customer };
+          localStorage.setItem('busywud_active_user', JSON.stringify(currentUser));
+          alert('Account updated successfully!');
+          refreshAuthState();
+        }
+      } catch (err) {
+        alert('Failed updating account: ' + err.message);
+      }
+    }
+    function refreshAuthState() {
+      const authSlot = document.getElementById('authSlot');
+      const cartBtn = document.getElementById('cartBtn');
+      const myAccountBtn = document.getElementById('myAccountBtn');
+      if (currentUser) {
+        cartBtn.classList.remove('hidden');
+        myAccountBtn.classList.remove('hidden');
+        authSlot.innerHTML = `
+          <div class="site-nav__user">
+            <span>Hi, ${currentUser.name}</span>
+            <button onclick="handleLogout()">Logout</button>
+          </div>
+        `;
+      } else {
+        cartBtn.classList.add('hidden');
+        myAccountBtn.classList.add('hidden');
+        authSlot.innerHTML = `<button class="site-nav__login-btn" onclick="openAuthModal('signin')">Sign In</button>`;
+      }
+      updateCartDisplay();
+    }
+
+    function handleAddToCartClick() {
+      if (!currentUser) { openAuthModal('signin'); return; }
+      cartQuantity += 1;
+      localStorage.setItem('busywud_cart_qty', cartQuantity);
+      updateCartDisplay();
+      toggleCartDrawer(true);
+    }
+    function handleInstantBuy() {
+      if (!currentUser) { openAuthModal('signin'); return; }
+      cartQuantity = 1;
+      localStorage.setItem('busywud_cart_qty', cartQuantity);
+      updateCartDisplay();
+      triggerCheckout();
+    }
+    function toggleCartDrawer(show) { document.getElementById('cartDrawer').classList.toggle('open', show); }
+
+    function updateCartDisplay() {
+      const badge = document.getElementById('cartCountBadge');
+      const container = document.getElementById('cartContents');
+      const totalDisplay = document.getElementById('cartDrawerTotal');
+      badge.innerText = cartQuantity;
+      if (cartQuantity <= 0) {
+        container.innerHTML = `<div style="text-align:center;padding:40px 0;color:var(--muted)"><i class="fa-solid fa-basket-shopping" style="font-size:32px;margin-bottom:10px;display:block"></i><p style="font-size:13px">Your shopping bag is empty.</p></div>`;
+        totalDisplay.innerText = '₹0';
+        return;
+      }
+      const totalAmount = cartQuantity * activeProduct.price;
+      container.innerHTML = `
+        <div class="cart-item">
+          <img src="${activeProduct.image}" alt="">
+          <div style="flex:1">
+            <div class="cart-item__title">${activeProduct.title}</div>
+            <div class="cart-item__price">₹${Number(activeProduct.price).toLocaleString('en-IN')}</div>
+            <div class="cart-item__actions">
+              <button onclick="adjustQty(-1)">-</button>
+              <span style="font-size:13px;font-weight:700">${cartQuantity}</span>
+              <button onclick="adjustQty(1)">+</button>
+            </div>
+          </div>
+          <button onclick="adjustQty(-cartQuantity)" style="background:none;border:none;cursor:pointer;color:var(--muted)">
+            <i class="fa-solid fa-trash text-xs"></i>
+          </button>
+        </div>
+      `;
+      totalDisplay.innerText = `₹${totalAmount.toLocaleString('en-IN')}`;
+    }
+    function adjustQty(delta) {
+      cartQuantity = Math.max(0, cartQuantity + delta);
+      localStorage.setItem('busywud_cart_qty', cartQuantity);
+      updateCartDisplay();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      loadProductFromMongo();
+      handleRouting();
+      refreshAuthState();
+      handleOAuthCallback();
+    });
+  </script>
+</body>
+</html>
