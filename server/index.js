@@ -176,6 +176,10 @@ app.post('/api/auth/google', async (req, res) => {
   }
 });
 
+app.get('/api/auth/verify', verifyToken, (req, res) => {
+  res.json({ valid: true, user: { email: req.user.email, role: req.user.role } });
+});
+
 // ─── Auth — Customers ─────────────────────────────────────────────────────────
 app.post('/api/auth/customer-register', async (req, res) => {
   try {
